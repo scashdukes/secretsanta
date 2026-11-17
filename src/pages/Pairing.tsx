@@ -4,7 +4,6 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { decryptText } from '../utils/crypto';
 import { PostCard } from '../components/PostCard';
 import { Trans, useTranslation } from 'react-i18next';
-import { MenuItem, SideMenu } from '../components/SideMenu';
 import { PageTransition } from '../components/PageTransition';
 import { ArrowLeft, Info } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
