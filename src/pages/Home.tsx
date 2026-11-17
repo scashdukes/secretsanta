@@ -113,7 +113,7 @@ export function Home() {
     </div>,
   ];*/
 
-  const toggleViewButton = (
+ /* const toggleViewButton = (
     <button
       onClick={(e) => {
         e.stopPropagation();
@@ -147,7 +147,7 @@ export function Home() {
               </div>
             </div>
           </PostCard>
-        </div>
+        </div>*/
 
         <div className="lg:order-none lg:flex-[5_5_0%]">
           <AccordionContainer>
