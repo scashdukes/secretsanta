@@ -49,5 +49,4 @@ export function SideMenu({children}: {children?: React.ReactNode}) {
         </MenuItem>
       ))}
     </div>*/
-  );
-} 
+
