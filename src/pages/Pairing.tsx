@@ -4,9 +4,9 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { decryptText } from '../utils/crypto';
 import { PostCard } from '../components/PostCard';
 import { Trans, useTranslation } from 'react-i18next';
-import { MenuItem, SideMenu } from '../components/SideMenu';
+//import { MenuItem, SideMenu } from '../components/SideMenu';
 import { PageTransition } from '../components/PageTransition';
-import { ArrowLeft, Info } from '@phosphor-icons/react';
+import { Info } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
 import CryptoJS from 'crypto-js';
 import { Layout } from "../components/Layout";
@@ -72,14 +72,14 @@ export function Pairing() {
     );
   }
 
-  const menuItems = [
+  /*const menuItems = [
     <MenuItem key={`back`} to="/" icon={<ArrowLeft weight={`bold`}/>}>
       {t('pairing.startYourOwn')}
     </MenuItem>
-  ];
+  ];*/
 
   return (
-    <Layout menuItems={menuItems}>
+    <Layout menuItems={[]}>
       <div>
         {!loading && assignment && (
           <motion.div
