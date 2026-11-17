@@ -10,7 +10,6 @@ import { Participant, Rule } from '../types';
 import { Link } from 'react-router-dom';
 import { PostCard } from '../components/PostCard';
 import { Trans, useTranslation } from 'react-i18next';
-import { MenuItem } from '../components/SideMenu';
 import { PageTransition } from '../components/PageTransition';
 import { Code, Heart, Rows, Star } from '@phosphor-icons/react';
 import { Settings } from '../components/Settings';
