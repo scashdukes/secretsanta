@@ -138,12 +138,14 @@ export function Home() {
               </h1>
               <div className="space-y-4 text-gray-600">
                 <Trans
-                  i18nKey="home.explanation"
-                  components={{
-                    p: <p/>,
-                    githubLink: <a className="text-blue-500 underline" href="https://github.com/arcanis/secretsanta/" target="_blank"/>,
-                    exampleLink: <Link className="text-blue-500 underline" to="/pairing?from=Simba&to=c1w%2FUV9lXC12U578BHPYZhXxhsK0fPTqoQDU9CA7W581P%2BM%3D"/>,
-                  }}
+                  <p>
+                    Add everyone taking part, set any pairing restrictions,
+                    and generate your Secret Santa draw.
+                  </p>
+                  <p>
+                    Copy each participant’s private link and send it directly
+                    to them by email.
+                  </p>
                 />
               </div>
             </div>
