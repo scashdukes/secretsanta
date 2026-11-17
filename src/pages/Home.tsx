@@ -114,7 +114,7 @@ export function Home() {
     </div>,
   ];
 
- /const toggleViewButton = (
+ const toggleViewButton = (
     <button
       onClick={(e) => {
         e.stopPropagation();
