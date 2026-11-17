@@ -8,9 +8,9 @@ import { ParticipantsTextView } from '../components/ParticipantsTextView';
 //import { MenuItem } from '../components/SideMenu';
 import { SecretSantaLinks } from '../components/SecretSantaLinks';
 import { Participant, Rule } from '../types';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { PostCard } from '../components/PostCard';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { PageTransition } from '../components/PageTransition';
 import { Code, Rows } from '@phosphor-icons/react';
 import { Settings } from '../components/Settings';
@@ -137,7 +137,7 @@ export function Home() {
                 {t('home.title')}
               </h1>
               <div className="space-y-4 text-gray-600">
-                <Trans
+              
                   <p>
                     Add everyone taking part, set any pairing restrictions,
                     and generate your Secret Santa draw.
@@ -146,7 +146,7 @@ export function Home() {
                     Copy each participant’s private link and send it directly
                     to them by email.
                   </p>
-                />
+               
               </div>
             </div>
           </PostCard>
