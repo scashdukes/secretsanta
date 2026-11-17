@@ -8,52 +8,78 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Build and Deploy
     permissions:
-       id-token: write
-       contents: read
+      id-token: write
+      contents: read
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          submodules: true
-          lfs: false
-      - name: Install OIDC Client from Core Package
-        run: npm install @actions/core@1.6.0 @actions/http-client
-      - name: Get Id Token
-        uses: actions/github-script@v6
+          node-version: "22"
+
+      - name: Set up Yarn
+        run: |
+          npm install --global corepack
+          corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run tests
+        run: yarn vitest run
+
+      - name: Build website
+        run: yarn vite build --base=/
+
+      - name: Configure assignment page routing
+        run: |
+          cat > dist/staticwebapp.config.json <<'EOF'
+          {
+            "navigationFallback": {
+              "rewrite": "/index.html",
+              "exclude": ["/assets/*", "/static/*"]
+            }
+          }
+          EOF
+
+      - name: Get identity token
+        uses: actions/github-script@v7
         id: idtoken
         with:
-           script: |
-               const coredemo = require('@actions/core')
-               return await coredemo.getIDToken()
-           result-encoding: string
-      - name: Build And Deploy
-        id: builddeploy
+          script: |
+            return await core.getIDToken()
+          result-encoding: string
+
+      - name: Deploy to Azure
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ORANGE_MUSHROOM_03303EB03 }}
-          action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist" # Built app content directory - optional
-          app_build_command: "yarn vite build"
           github_id_token: ${{ steps.idtoken.outputs.result }}
-          ###### End of Repository/Build Configurations ######
+          action: "upload"
+          app_location: "dist"
+          api_location: ""
+          output_location: ""
+          skip_app_build: true
+          skip_api_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
-    name: Close Pull Request Job
+    name: Close Preview Environment
     steps:
-      - name: Close Pull Request
-        id: closepullrequest
+      - name: Close preview
         uses: Azure/static-web-apps-deploy@v1
         with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ORANGE_MUSHROOM_03303EB03 }}
           action: "close"
