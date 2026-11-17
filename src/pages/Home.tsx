@@ -5,14 +5,14 @@ import { Accordion } from '../components/Accordion';
 import { AccordionContainer } from '../components/AccordionContainer';
 import { ParticipantsList } from '../components/ParticipantsList';
 import { ParticipantsTextView } from '../components/ParticipantsTextView';
-import { MenuItem } from '../components/SideMenu';
+//import { MenuItem } from '../components/SideMenu';
 import { SecretSantaLinks } from '../components/SecretSantaLinks';
 import { Participant, Rule } from '../types';
 import { Link } from 'react-router-dom';
 import { PostCard } from '../components/PostCard';
 import { Trans, useTranslation } from 'react-i18next';
 import { PageTransition } from '../components/PageTransition';
-import { Code, Heart, Rows, Star } from '@phosphor-icons/react';
+import { Code, Rows } from '@phosphor-icons/react';
 import { Settings } from '../components/Settings';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { Layout } from '../components/Layout';
@@ -103,7 +103,7 @@ export function Home() {
     setOpenSection('links');
   };
 
-  const menuItems = [
+  /*const menuItems = [
     <div className="flex flex-col space-y-2 lg:flex-row lg:space-y-0 lg:space-x-2">
       <MenuItem key={`vanity`} to="https://bsky.app/profile/mael.dev" icon={<Star className={`text-orange-500`} weight={`fill`}/>}>
         {t(`home.vanity`)}
@@ -112,7 +112,7 @@ export function Home() {
         {t(`home.sponsor`)}
       </MenuItem>
     </div>,
-  ];
+  ];*/
 
  const toggleViewButton = (
     <button
@@ -129,7 +129,7 @@ export function Home() {
 
   return <>
     <PageTransition>
-      <Layout menuItems={menuItems}>
+      <Layout menuItems={[]}>
         <div className="lg:flex-[6_6_0%]">
           <PostCard>
             <div className="space-y-4">
