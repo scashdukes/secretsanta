@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { MenuItem, SideMenu } from "./SideMenu";
+
 
 export type LayoutProps = {
   menuItems: React.ReactNode[];
