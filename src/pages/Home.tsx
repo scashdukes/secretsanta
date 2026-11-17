@@ -5,6 +5,7 @@ import { Accordion } from '../components/Accordion';
 import { AccordionContainer } from '../components/AccordionContainer';
 import { ParticipantsList } from '../components/ParticipantsList';
 import { ParticipantsTextView } from '../components/ParticipantsTextView';
+import { MenuItem } from '../components/SideMenu';
 import { SecretSantaLinks } from '../components/SecretSantaLinks';
 import { Participant, Rule } from '../types';
 import { Link } from 'react-router-dom';
@@ -102,7 +103,7 @@ export function Home() {
     setOpenSection('links');
   };
 
-  /*const menuItems = [
+  const menuItems = [
     <div className="flex flex-col space-y-2 lg:flex-row lg:space-y-0 lg:space-x-2">
       <MenuItem key={`vanity`} to="https://bsky.app/profile/mael.dev" icon={<Star className={`text-orange-500`} weight={`fill`}/>}>
         {t(`home.vanity`)}
@@ -111,9 +112,9 @@ export function Home() {
         {t(`home.sponsor`)}
       </MenuItem>
     </div>,
-  ];*/
+  ];
 
- /* const toggleViewButton = (
+ /const toggleViewButton = (
     <button
       onClick={(e) => {
         e.stopPropagation();
@@ -147,7 +148,7 @@ export function Home() {
               </div>
             </div>
           </PostCard>
-        </div>*/
+        </div>
 
         <div className="lg:order-none lg:flex-[5_5_0%]">
           <AccordionContainer>
